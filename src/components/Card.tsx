@@ -1,16 +1,41 @@
-import React, {FC, ReactChild, ReactNode} from 'react';
+import React, {FC, useState} from 'react';
+
+// Для стилей, которые приходят из Bootstrap
+export enum CardVariant {
+    outlined = "outlined",
+    primary = "primary"
+}
 
 interface CardProps {
     width?: string;
     height?: string;
-    children?: ReactChild | ReactNode
+    variant: CardVariant;
+    onClick: (num: number) => void;
 }
 
-const Card: FC<CardProps> = ({ width, height, children }) => {
+const Card: FC<CardProps> = (
+    {
+        width,
+        height,
+        variant,
+        onClick,
+        children
+    }) => {
+
+    const [state, setState] = useState(0);
+
     return (
-        <div style={{width, height, border: "1px solid gray"}}>
-            {children}
-        </div>
+        <>
+            <div style={{
+                width,
+                height,
+                border: variant === CardVariant.outlined ? '1px solid gray' : 'none',
+                background: variant === CardVariant.primary ? 'lightgrey' : '',
+            }}
+                 onClick={() => onClick(state)}>
+                {children}
+            </div>
+        </>
     );
 };
 
