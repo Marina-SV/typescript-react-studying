@@ -1,4 +1,5 @@
 import React, {FC, useState} from 'react';
+import UserList from "./UserList";
 
 // Для стилей, которые приходят из Bootstrap
 export enum CardVariant {
